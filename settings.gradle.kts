@@ -1,1 +1,1 @@
-rootProject.name = "MineCraftDefaultProject"
+rootProject.name = "Utility-API"
