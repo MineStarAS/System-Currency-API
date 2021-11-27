@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "kr.kro.minestar"
-version = "1.1.0"
+version = "1.1.4"
 
 
 
