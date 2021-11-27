@@ -9,6 +9,13 @@ fun ItemStack.setDisplay(display: String): ItemStack {
     return this
 }
 
+fun ItemStack.clearDisplay(): ItemStack {
+    val meta = this.itemMeta
+    meta.setDisplayName("")
+    this.itemMeta = meta
+    return this
+}
+
 fun ItemStack.addPrefix(prefix: String): ItemStack {
     val meta = this.itemMeta
     val display = meta.displayName
@@ -27,15 +34,6 @@ fun ItemStack.addSuffix(suffix: String): ItemStack {
     return this
 }
 
-fun ItemStack.setLore(stringList: List<String>): ItemStack {
-    val meta = this.itemMeta
-    val list = mutableListOf<String>()
-    for (s in stringList) list.add("§f$s")
-    meta.lore = list
-    this.itemMeta = meta
-    return this
-}
-
 fun ItemStack.addLore(string: String): ItemStack {
     val meta = this.itemMeta
     val lore = meta.lore ?: mutableListOf()
@@ -49,5 +47,12 @@ fun ItemStack.clearLore(): ItemStack {
     val meta = this.itemMeta
     meta.lore = listOf()
     this.itemMeta = meta
+    return this
+}
+
+fun ItemStack.setAmount(int: Int): ItemStack {
+    if (int <= 0) this.amount = 1.also { return this }
+    if (int > 64) this.amount = 64.also { return this }
+    this.amount = int
     return this
 }

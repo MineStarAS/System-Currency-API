@@ -4,6 +4,10 @@ import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
+fun String.toConsole() {
+    print(this)
+}
+
 fun String.toServer() {
     Bukkit.broadcastMessage(this)
 }
