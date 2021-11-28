@@ -33,14 +33,6 @@ fun String.removeUnderBar(): String {
     return this.replace('_', ' ')
 }
 
-fun String.remove(char: Char): String {
-    return this.replace(char.toString(), "")
-}
-
-fun String.remove(string: String): String {
-    return this.replace(string, "")
-}
-
 fun Int.toTick(): Int {
     return this * 20
 }
@@ -51,18 +43,4 @@ fun Int.toTime(): String {
 
     return if (sec < 10) "$min : 0$sec"
     else "$min : $sec"
-}
-
-class UtilCode {
-    companion object {
-        fun addComma(int: Int): String {
-            val df = DecimalFormat("###,###")
-            return df.format(int)
-        }
-
-        fun addComma(long: Long): String {
-            val df = DecimalFormat("###,###")
-            return df.format(long)
-        }
-    }
 }

@@ -1,6 +1,7 @@
 package kr.kro.minestar.utility
 
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.Damageable
 
 fun ItemStack.setDisplay(display: String): ItemStack {
     val meta = this.itemMeta
