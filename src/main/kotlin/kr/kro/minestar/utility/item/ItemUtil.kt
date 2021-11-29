@@ -1,7 +1,6 @@
-package kr.kro.minestar.utility
+package kr.kro.minestar.utility.item
 
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.Damageable
 
 fun ItemStack.setDisplay(display: String): ItemStack {
     val meta = this.itemMeta
@@ -56,4 +55,8 @@ fun ItemStack.amount(int: Int): ItemStack {
     if (int > 64) this.amount = 64.also { return this }
     this.amount = int
     return this
+}
+
+fun ItemStack.isSameItem(item: ItemStack): Boolean {
+    return this.clone().amount(1) == item.clone().amount(1)
 }

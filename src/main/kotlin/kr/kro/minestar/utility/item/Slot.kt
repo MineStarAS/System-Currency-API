@@ -1,4 +1,4 @@
-package kr.kro.minestar.utility
+package kr.kro.minestar.utility.item
 
 import org.bukkit.inventory.ItemStack
 

@@ -1,9 +1,8 @@
-package kr.kro.minestar.utility
+package kr.kro.minestar.utility.string
 
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import java.text.DecimalFormat
 
 fun String.toConsole() {
     print(this)
@@ -33,14 +32,10 @@ fun String.removeUnderBar(): String {
     return this.replace('_', ' ')
 }
 
-fun Int.toTick(): Int {
-    return this * 20
+fun String.remove(char: Char): String {
+    return this.replace(char.toString(), "")
 }
 
-fun Int.toTime(): String {
-    val min = this / 60
-    val sec = this - (min * 60)
-
-    return if (sec < 10) "$min : 0$sec"
-    else "$min : $sec"
+fun String.remove(string: String): String {
+    return this.replace(string, "")
 }
