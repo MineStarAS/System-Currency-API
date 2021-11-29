@@ -38,5 +38,12 @@ fun Inventory.howMuchToAdd(item: ItemStack): Int {
     val maxStack = item.maxStackSize
     var empty = maxStack * this.getEmptySlot()
     if (maxStack == 1) return empty
-
+    val list = this.getNotFullStackItemSlot(item)
+    if (list.isEmpty()) return empty
+    for (slot in list) {
+        val i = this.getItem(slot) ?: continue
+        if (i.amount == maxStack) continue
+        empty += maxStack - i.amount
+    }
+    return empty
 }
