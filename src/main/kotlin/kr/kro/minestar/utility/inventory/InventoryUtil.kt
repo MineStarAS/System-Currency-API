@@ -50,6 +50,9 @@ fun Inventory.howMuchToAdd(item: ItemStack): Int {
 
 fun Inventory.howMuchHasSameItem(item: ItemStack): Int {
     var has = 0
-    for (i in this) if (i.isSameItem(item)) has += i.amount
+    for (i in this) {
+        i?: continue
+        if (i.isSameItem(item)) has += i.amount
+    }
     return has
 }
