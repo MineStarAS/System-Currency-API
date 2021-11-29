@@ -34,7 +34,7 @@ fun Inventory.getNotFullStackItemSlot(item: ItemStack): List<Int> {
     return list
 }
 
-fun Inventory.howMuchToAdd(item: ItemStack): Int {
+fun Inventory.howManyToAdd(item: ItemStack): Int {
     val maxStack = item.maxStackSize
     var empty = maxStack * this.getEmptySlot()
     if (maxStack == 1) return empty
@@ -48,7 +48,7 @@ fun Inventory.howMuchToAdd(item: ItemStack): Int {
     return empty
 }
 
-fun Inventory.howMuchHasSameItem(item: ItemStack): Int {
+fun Inventory.howManyHasSameItem(item: ItemStack): Int {
     var has = 0
     for (i in this) {
         i?: continue
