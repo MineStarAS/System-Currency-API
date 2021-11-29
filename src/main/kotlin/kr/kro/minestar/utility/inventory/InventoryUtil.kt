@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.PlayerInventory
 
 fun Inventory.getEmptySlot(): Int {
-    val size = if (this is PlayerInventory) return 9 * 4
+    val size = if (this is PlayerInventory) 9 * 4
     else this.size
     var empty = 0
     for (slot in 0 until size) if (getItem(slot) == null) ++empty
@@ -46,4 +46,10 @@ fun Inventory.howMuchToAdd(item: ItemStack): Int {
         empty += maxStack - i.amount
     }
     return empty
+}
+
+fun Inventory.howMuchHasSameItem(item: ItemStack): Int {
+    var has = 0
+    for (i in this) if (i.isSameItem(item)) has += i.amount
+    return has
 }
