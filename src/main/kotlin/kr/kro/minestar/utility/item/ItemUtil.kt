@@ -51,8 +51,6 @@ fun ItemStack.clearLore(): ItemStack {
 }
 
 fun ItemStack.amount(int: Int): ItemStack {
-    if (int <= 0) this.amount = 1.also { return this }
-    if (int > 64) this.amount = 64.also { return this }
     this.amount = int
     return this
 }
