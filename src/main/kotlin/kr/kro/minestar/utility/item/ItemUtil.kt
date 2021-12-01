@@ -58,3 +58,7 @@ fun ItemStack.amount(int: Int): ItemStack {
 fun ItemStack.isSameItem(item: ItemStack): Boolean {
     return this.clone().amount(1) == item.clone().amount(1)
 }
+
+fun ItemStack.isDefaultItem(): Boolean {
+    return this.isSameItem(this.type.item())
+}
