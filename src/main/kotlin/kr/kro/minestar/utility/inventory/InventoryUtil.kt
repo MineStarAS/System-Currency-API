@@ -5,6 +5,9 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.PlayerInventory
 
+/**
+ * 인벤토리의 빈 슬롯 갯수를 집계합니다.
+ */
 fun Inventory.getEmptySlot(): Int {
     val size = if (this is PlayerInventory) 9 * 4
     else this.size
@@ -13,6 +16,9 @@ fun Inventory.getEmptySlot(): Int {
     return empty
 }
 
+/**
+ * 인벤토리에서 입력아이템과 같은 아이템의 갯수를 집계합니다.
+ */
 fun Inventory.hasSameItem(item: ItemStack): Boolean {
     for (slot in this) {
         if (slot == null) continue
@@ -21,6 +27,9 @@ fun Inventory.hasSameItem(item: ItemStack): Boolean {
     return false
 }
 
+/**
+ * 인벤토리에서 입력아이템과 같은 아이템이 있는 슬롯 중 최대 중첩 상태가 아닌 슬롯을 집계합니다.
+ */
 fun Inventory.getNotFullStackItemSlot(item: ItemStack): List<Int> {
     val list = mutableListOf<Int>()
     if (item.maxStackSize <= 1) return list
@@ -34,6 +43,9 @@ fun Inventory.getNotFullStackItemSlot(item: ItemStack): List<Int> {
     return list
 }
 
+/**
+ * 인벤토리에서 입력아이템이 얼마나 들어갈 수 있는지 계산합니다.
+ */
 fun Inventory.howManyToAdd(item: ItemStack): Int {
     val maxStack = item.maxStackSize
     var empty = maxStack * this.getEmptySlot()
@@ -48,6 +60,9 @@ fun Inventory.howManyToAdd(item: ItemStack): Int {
     return empty
 }
 
+/**
+ * 인벤토리에서 입력아이템을 얼마나 가지고 있는지 집계합니다.
+ */
 fun Inventory.howManyHasSameItem(item: ItemStack): Int {
     var has = 0
     for (i in this) {
