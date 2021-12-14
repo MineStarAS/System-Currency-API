@@ -12,9 +12,9 @@ class ParticleUtil {
     var offsetY = 0.0
     var offsetZ = 0.0
     var speed = 0.0
-    val data: Any? = null
+    var data: Any? = null
     var force = false
-    val players = mutableListOf<Player>()
+    var players = mutableListOf<Player>()
 
     /**
      * 파티클을 재생합니다.
