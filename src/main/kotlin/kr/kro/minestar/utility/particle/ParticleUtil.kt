@@ -21,6 +21,6 @@ class ParticleUtil {
      */
     fun play(location: Location) {
         if (players.isEmpty()) return location.world.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, speed, data, force)
-        for (p in players) p.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, speed, force)
+        for (p in players) p.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, speed, data)
     }
 }

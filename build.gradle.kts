@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "kr.kro.minestar"
-version = "1.4.2"
+version = "1.4.3"
 
 
 
@@ -61,8 +61,8 @@ tasks {
             // jar file copy
             copy {
                 from(archiveFile)
-//                val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
-                val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\MCserver 1.17.1 - vanilla\\plugins")
+                val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
+//                val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\MCserver 1.17.1 - vanilla\\plugins")
                 into(if (File(plugins, archiveFileName.get()).exists()) plugins else plugins)
             }
         }
