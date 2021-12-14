@@ -99,38 +99,38 @@ fun Location.toFloorCenter(): Location {
 fun Location.isInside(loc1: Location, loc2: Location): Boolean {
     if (world != loc1.world) return false
     if (world != loc2.world) return false
-    val xLow: Double
-    val xHigh: Double
-    val yLow: Double
-    val yHigh: Double
-    val zLow: Double
-    val zHigh: Double
+    val xLow: Int
+    val xHigh: Int
+    val yLow: Int
+    val yHigh: Int
+    val zLow: Int
+    val zHigh: Int
 
-    if (loc1.x <= loc2.x) {
-        xLow = loc1.x
-        xHigh = loc2.x
+    if (loc1.blockX <= loc2.blockX) {
+        xLow = loc1.blockX
+        xHigh = loc2.blockX
     } else {
-        xLow = loc2.x
-        xHigh = loc1.x
+        xLow = loc2.blockX
+        xHigh = loc1.blockX
     }
-    if (loc1.y <= loc2.y) {
-        yLow = loc1.y
-        yHigh = loc2.y
+    if (loc1.blockY <= loc2.blockY) {
+        yLow = loc1.blockY
+        yHigh = loc2.blockY
     } else {
-        yLow = loc2.y
-        yHigh = loc1.y
+        yLow = loc2.blockY
+        yHigh = loc1.blockY
     }
-    if (loc1.z <= loc2.z) {
-        zLow = loc1.z
-        zHigh = loc2.z
+    if (loc1.blockZ <= loc2.blockZ) {
+        zLow = loc1.blockZ
+        zHigh = loc2.blockZ
     } else {
-        zLow = loc2.z
-        zHigh = loc1.z
+        zLow = loc2.blockZ
+        zHigh = loc1.blockZ
     }
 
-    if (x !in xLow..xHigh) return false
-    if (y !in yLow..yHigh) return false
-    if (z !in zLow..zHigh) return false
+    if (blockX !in xLow..xHigh) return false
+    if (blockY !in yLow..yHigh) return false
+    if (blockZ !in zLow..zHigh) return false
     return true
 }
 
@@ -142,38 +142,38 @@ fun Location.isInsideToCube(center: Location, halfLength: Number): Boolean {
     val l = halfLength.toDouble()
     val loc1 = Location(world, center.x - l, 0.0, center.z - l)
     val loc2 = Location(world, center.x + l, 256.0, center.z + l)
-    val xLow: Double
-    val xHigh: Double
-    val yLow: Double
-    val yHigh: Double
-    val zLow: Double
-    val zHigh: Double
+    val xLow: Int
+    val xHigh: Int
+    val yLow: Int
+    val yHigh: Int
+    val zLow: Int
+    val zHigh: Int
 
-    if (loc1.x <= loc2.x) {
-        xLow = loc1.x
-        xHigh = loc2.x
+    if (loc1.blockX <= loc2.blockX) {
+        xLow = loc1.blockX
+        xHigh = loc2.blockX
     } else {
-        xLow = loc2.x
-        xHigh = loc1.x
+        xLow = loc2.blockX
+        xHigh = loc1.blockX
     }
-    if (loc1.y <= loc2.y) {
-        yLow = loc1.y
-        yHigh = loc2.y
+    if (loc1.blockY <= loc2.blockY) {
+        yLow = loc1.blockY
+        yHigh = loc2.blockY
     } else {
-        yLow = loc2.y
-        yHigh = loc1.y
+        yLow = loc2.blockY
+        yHigh = loc1.blockY
     }
-    if (loc1.z <= loc2.z) {
-        zLow = loc1.z
-        zHigh = loc2.z
+    if (loc1.blockZ <= loc2.blockZ) {
+        zLow = loc1.blockZ
+        zHigh = loc2.blockZ
     } else {
-        zLow = loc2.z
-        zHigh = loc1.z
+        zLow = loc2.blockZ
+        zHigh = loc1.blockZ
     }
 
-    if (x !in xLow..xHigh) return false
-    if (y !in yLow..yHigh) return false
-    if (z !in zLow..zHigh) return false
+    if (blockX !in xLow..xHigh) return false
+    if (blockY !in yLow..yHigh) return false
+    if (blockZ !in zLow..zHigh) return false
     return true
 }
 
@@ -191,5 +191,14 @@ fun Location.isInRange(loc: Location, distance: Number): Boolean {
  */
 fun Location.lookAtTheLocation(loc: Location): Location {
     direction = loc.subtract(this).toVector()
+    return this
+}
+
+/**
+ * Location의 yaw와 pitch를 영점으로 설정합니다.
+ */
+fun Location.directionZero(): Location {
+    yaw = 0F
+    pitch = 0F
     return this
 }

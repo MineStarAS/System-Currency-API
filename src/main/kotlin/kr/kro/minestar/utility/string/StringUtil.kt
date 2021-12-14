@@ -33,6 +33,20 @@ fun String.toPlayers(players: Collection<Player>) {
 }
 
 /**
+ * String을 입력된 플레이어의 액션바에 출력합니다.
+ */
+fun String.toPlayerActionBar(player: Player) {
+    player.sendActionBar(this)
+}
+
+/**
+ * String을 입력된 플레이어들의 액션바에 출력합니다.
+ */
+fun String.toPlayersActionBar(players: Collection<Player>) {
+    for (player in players) player.sendActionBar(this)
+}
+
+/**
  * String을 Component로 변환합니다.
  */
 fun String.toComponent(): Component {

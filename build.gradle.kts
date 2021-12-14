@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "kr.kro.minestar"
-version = "1.3.0"
+version = "1.4.0"
 
 
 
@@ -27,10 +27,11 @@ dependencies {
     //project_TL
 
     //MineStar
+//    compileOnly("kr.kro.minestar:NMS:1.0.0")
 }
 
 tasks {
-    compileKotlin{
+    compileKotlin {
         kotlinOptions.jvmTarget = "16"
     }
     javadoc {
@@ -60,6 +61,7 @@ tasks {
             // jar file copy
             copy {
                 from(archiveFile)
+//                val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
                 val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\MCserver 1.17.1 - vanilla\\plugins")
                 into(if (File(plugins, archiveFileName.get()).exists()) plugins else plugins)
             }
