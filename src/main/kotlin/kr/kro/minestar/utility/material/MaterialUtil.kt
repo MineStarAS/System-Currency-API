@@ -1,7 +1,6 @@
-package kr.kro.minestar.utility.item
+package kr.kro.minestar.utility.material
 
 import org.bukkit.Material
-import org.bukkit.block.Block
 import org.bukkit.inventory.ItemStack
 
 /**
