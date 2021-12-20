@@ -137,10 +137,11 @@ fun Location.isInside(loc1: Location, loc2: Location): Boolean {
 /**
  * Location이 중심 Location을 기준으로 형성된 직육면체 내에 있는지 구분합니다.
  */
-fun Location.isInsideToCube(halfLength: Number): Boolean {
+fun Location.isInsideToCube(location: Location, halfLength: Number): Boolean {
+    if (world != location.world) return false
     val l = halfLength.toInt()
-    val loc1 = Location(world, x - l, 0.0, z - l).toBlockLocation()
-    val loc2 = Location(world, x + l, 256.0, z + l).toBlockLocation()
+    val loc1 = Location(world, location.x - l, 0.0, location.z - l).toBlockLocation()
+    val loc2 = Location(world, location.x + l, 256.0, location.z + l).toBlockLocation()
     val xLow: Int
     val xHigh: Int
     val yLow: Int
