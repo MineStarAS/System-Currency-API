@@ -8,42 +8,42 @@ import org.bukkit.entity.Player
  * Stringd을 콘솔에만 출력합니다.
  */
 fun String.toConsole() {
-    println(this)
+    if (this != "") println(this)
 }
 
 /**
  * String을 콘솔 및 서버 내 플레이어들에게 출력합니다.
  */
 fun String.toServer() {
-    Bukkit.broadcastMessage(this)
+    if (this != "") Bukkit.broadcastMessage(this)
 }
 
 /**
  * String을 입력된 플레이어에게만 출력합니다.
  */
 fun String.toPlayer(player: Player) {
-    player.sendMessage(this)
+    if (this != "") player.sendMessage(this)
 }
 
 /**
  * String을 입력된 플레이어들에게만 출력합니다.
  */
 fun String.toPlayers(players: Collection<Player>) {
-    for (player in players) player.sendMessage(this)
+    if (this != "") for (player in players) player.sendMessage(this)
 }
 
 /**
  * String을 입력된 플레이어의 액션바에 출력합니다.
  */
 fun String.toPlayerActionBar(player: Player) {
-    player.sendActionBar(this)
+    if (this != "") player.sendActionBar(this)
 }
 
 /**
  * String을 입력된 플레이어들의 액션바에 출력합니다.
  */
 fun String.toPlayersActionBar(players: Collection<Player>) {
-    for (player in players) player.sendActionBar(this)
+    if (this != "") for (player in players) player.sendActionBar(this)
 }
 
 /**
