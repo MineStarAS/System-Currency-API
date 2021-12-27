@@ -23,6 +23,16 @@ fun ItemStack.clearDisplay(): ItemStack {
     return this
 }
 
+
+/**
+ * 아이템의 이름을 가져옵니다. 이름이 없을 경우 타입값을 가져옵니다.
+ */
+fun ItemStack.display(): String {
+    val meta = this.itemMeta
+    if (meta.hasDisplayName()) return meta.displayName
+    return type.name
+}
+
 /**
  * 아이템의 이름에 접두사를 추가합니다.
  */
