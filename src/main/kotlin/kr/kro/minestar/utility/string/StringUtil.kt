@@ -2,6 +2,7 @@ package kr.kro.minestar.utility.string
 
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 
 /**
@@ -86,4 +87,11 @@ fun String.remove(string: String): String {
  */
 fun String.convertFileName(): String {
     return this.remove('/').remove("\\").remove(':').remove('?').remove('*').remove('<').remove('>').remove('|').remove("\"")
+}
+
+/**
+ * String 에 포함된 색깔 코드를 제거 합니다.
+ */
+fun String.unColor(): String {
+    return ChatColor.stripColor(this)!!
 }
