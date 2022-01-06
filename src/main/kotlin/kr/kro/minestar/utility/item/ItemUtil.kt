@@ -1,12 +1,22 @@
 package kr.kro.minestar.utility.item
 
 import kr.kro.minestar.utility.material.item
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
+
+/**
+ * 아이템의 이름을 가져옵니다. 이름이 없을 경우 타입값을 가져옵니다.
+ */
+fun ItemStack.display(): String {
+    val meta = this.itemMeta
+    if (meta.hasDisplayName()) return meta.displayName
+    return type.name
+}
 
 /**
  * 아이템의 이름을 설정합니다.
  */
-fun ItemStack.setDisplay(display: String): ItemStack {
+fun ItemStack.display(display: String): ItemStack {
     val meta = this.itemMeta
     meta.setDisplayName("§f$display")
     this.itemMeta = meta
@@ -21,16 +31,6 @@ fun ItemStack.clearDisplay(): ItemStack {
     meta.setDisplayName("")
     this.itemMeta = meta
     return this
-}
-
-
-/**
- * 아이템의 이름을 가져옵니다. 이름이 없을 경우 타입값을 가져옵니다.
- */
-fun ItemStack.display(): String {
-    val meta = this.itemMeta
-    if (meta.hasDisplayName()) return meta.displayName
-    return type.name
 }
 
 /**
@@ -84,6 +84,22 @@ fun ItemStack.clearLore(): ItemStack {
  */
 fun ItemStack.amount(int: Int): ItemStack {
     this.amount = int
+    return this
+}
+
+/**
+ * 아이템에 모든 아이템 플래그를 추가 합니다.
+ */
+fun ItemStack.flagAll():ItemStack {
+    for (flag in ItemFlag.values()) addItemFlags(flag)
+    return this
+}
+
+/**
+ * 아이템에 있는 모든 아이템 플래그를 제거 합니다.
+ */
+fun ItemStack.flagClear():ItemStack {
+    for (flag in ItemFlag.values()) removeItemFlags(flag)
     return this
 }
 
