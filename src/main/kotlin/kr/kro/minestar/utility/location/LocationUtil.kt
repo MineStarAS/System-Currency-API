@@ -189,7 +189,7 @@ fun Location.isInRange(loc: Location, distance: Number): Boolean {
 /**
  * Location의 시점 좌표가 입력 Location을 바라보게 설정합니다.
  */
-fun Location.lookAtTheLocation(loc: Location): Location {
+fun Location.look(loc: Location): Location {
     direction = loc.subtract(this).toVector()
     return this
 }
