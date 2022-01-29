@@ -13,7 +13,7 @@ enum class Axis {
 /**
  * Location의 axis에 number를 더합니다.
  */
-fun Location.add(axis: Axis, number: Number): Location {
+fun Location.addAxis(axis: Axis, number: Number): Location {
     if (number == 0) return this
     when (axis) {
         Axis.X -> add(number.toDouble(), 0.0, 0.0)
@@ -54,7 +54,7 @@ fun Location.add(axis: Axis, number: Number): Location {
 /**
  * Location의 axis를 number로 설정합니다.
  */
-fun Location.set(axis: Axis, number: Number): Location {
+fun Location.setAxis(axis: Axis, number: Number): Location {
     when (axis) {
         Axis.X -> x = number.toDouble()
         Axis.Y -> y = number.toDouble()
@@ -202,3 +202,9 @@ fun Location.directionZero(): Location {
     pitch = 0F
     return this
 }
+
+/**
+ * Location 의 보는 방향으로 length 값 만큼 offset 시킵니다.
+ */
+fun Location.offset(length: Number) = toVector().add(direction.multiply(length.toDouble())).toLocation(world)
+
