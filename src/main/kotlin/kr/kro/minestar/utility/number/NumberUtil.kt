@@ -2,6 +2,7 @@ package kr.kro.minestar.utility.number
 
 import java.text.DecimalFormat
 import kotlin.math.pow
+import kotlin.math.round
 import kotlin.random.Random
 
 /**
@@ -31,4 +32,14 @@ fun Double.percent(): Boolean {
     val randomInt = Random.nextInt(maxInt)
     if (randomInt < tureInt) return true
     return false
+}
+
+/**
+ * Double 을 length 값 길이 만큼 소수점을 남기고 반올림 합니다.
+ */
+fun Double.round(length: Int): Double {
+    if (length <= 0) return toInt().toDouble()
+    var up = 1
+    for (int in 1..length) up *= 10
+    return round((this * up)) / up
 }
