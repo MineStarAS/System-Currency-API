@@ -206,5 +206,9 @@ fun Location.directionZero(): Location {
 /**
  * Location 의 보는 방향으로 length 값 만큼 offset 시킵니다.
  */
-fun Location.offset(length: Number) = toVector().add(direction.multiply(length.toDouble())).toLocation(world)
+fun Location.offset(length: Number): Location {
+    val loc = toVector().add(direction.multiply(length.toDouble())).toLocation(world)
+    this.set(loc.x, loc.y, loc.z)
+    return this
+}
 
