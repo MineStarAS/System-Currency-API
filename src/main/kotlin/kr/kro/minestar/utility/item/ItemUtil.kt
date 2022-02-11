@@ -19,7 +19,7 @@ fun ItemStack.display(): String {
 fun ItemStack.display(display: String): ItemStack {
     val meta = this.itemMeta
     meta.setDisplayName("§f$display")
-    this.itemMeta = meta
+    itemMeta = meta
     return this
 }
 
@@ -29,7 +29,7 @@ fun ItemStack.display(display: String): ItemStack {
 fun ItemStack.clearDisplay(): ItemStack {
     val meta = this.itemMeta
     meta.setDisplayName("")
-    this.itemMeta = meta
+    itemMeta = meta
     return this
 }
 
@@ -41,7 +41,7 @@ fun ItemStack.addPrefix(prefix: String): ItemStack {
     val display = meta.displayName
     if (meta.hasDisplayName()) meta.setDisplayName("§f$prefix $display")
     else meta.setDisplayName(prefix)
-    this.itemMeta = meta
+    itemMeta = meta
     return this
 }
 
@@ -53,7 +53,7 @@ fun ItemStack.addSuffix(suffix: String): ItemStack {
     val display = meta.displayName
     if (meta.hasDisplayName()) meta.setDisplayName("$display $suffix")
     else meta.setDisplayName(suffix)
-    this.itemMeta = meta
+    itemMeta = meta
     return this
 }
 
@@ -65,7 +65,16 @@ fun ItemStack.addLore(string: String): ItemStack {
     val lore = meta.lore ?: mutableListOf()
     lore.add("§f$string")
     meta.lore = lore
-    this.itemMeta = meta
+    itemMeta = meta
+    return this
+}
+
+fun ItemStack.addLore(stringList: List<String>): ItemStack {
+    val meta = this.itemMeta
+    val lore = meta.lore ?: mutableListOf()
+    for (string in stringList) lore.add("§f$string")
+    meta.lore = lore
+    itemMeta = meta
     return this
 }
 
@@ -75,7 +84,7 @@ fun ItemStack.addLore(string: String): ItemStack {
 fun ItemStack.clearLore(): ItemStack {
     val meta = this.itemMeta
     meta.lore = listOf()
-    this.itemMeta = meta
+    itemMeta = meta
     return this
 }
 
@@ -88,17 +97,27 @@ fun ItemStack.amount(int: Int): ItemStack {
 }
 
 /**
- * 아이템에 모든 아이템 플래그를 추가 합니다.
+ * 아이템의 CustomModelData 를 설정합니다.
  */
-fun ItemStack.flagAll():ItemStack {
+fun ItemStack.cmData(int: Int?): ItemStack {
+    val meta = itemMeta
+    meta.setCustomModelData(int)
+    itemMeta = meta
+    return this
+}
+
+/**
+ * 아이템에 모든 아이템 플래그를 추가합니다.
+ */
+fun ItemStack.flagAll(): ItemStack {
     for (flag in ItemFlag.values()) addItemFlags(flag)
     return this
 }
 
 /**
- * 아이템에 있는 모든 아이템 플래그를 제거 합니다.
+ * 아이템에 있는 모든 아이템 플래그를 제거합니다.
  */
-fun ItemStack.flagClear():ItemStack {
+fun ItemStack.flagClear(): ItemStack {
     for (flag in ItemFlag.values()) removeItemFlags(flag)
     return this
 }
