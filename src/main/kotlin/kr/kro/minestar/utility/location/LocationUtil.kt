@@ -212,3 +212,18 @@ fun Location.offset(length: Number): Location {
     return this
 }
 
+/**
+ * Location 의 yaw 값의 중간 점으로 yaw 를 설정합니다.
+ */
+fun Location.facing(): Location {
+    val face = when (yaw.toInt()) {
+        in -180 until -135,
+        in 135 until 180 -> -180
+        in -135 until -45 -> -90
+        in -45 until 45 -> 0
+        in 45 until 135 -> 90
+        else -> 0
+    }
+    yaw = face.toFloat()
+    return this
+}
