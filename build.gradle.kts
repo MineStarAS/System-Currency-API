@@ -1,12 +1,12 @@
 plugins {
-    kotlin("jvm") version "1.6.0"
+    kotlin("jvm") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.1.0"
     id("org.jetbrains.dokka") version "1.5.0"
     `maven-publish`
 }
 
 group = "kr.kro.minestar"
-version = "1.6.0"
+version = "1.6.1"
 
 val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
 //val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\MCserver 1.17.1 - vanilla\\plugins")
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(kotlin("stdlib"))
+    implementation(kotlin("stdlib"))
     compileOnly("net.kyori:adventure-api:4.9.3")
     compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 
@@ -34,7 +34,7 @@ dependencies {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "16"
+        kotlinOptions.jvmTarget = "17"
     }
     javadoc {
         options.encoding = "UTF-8"
