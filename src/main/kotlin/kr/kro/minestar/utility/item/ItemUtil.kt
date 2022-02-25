@@ -107,6 +107,26 @@ fun ItemStack.cmData(int: Int?): ItemStack {
 }
 
 /**
+ * 아이템에 Unbreakable 을 추가합니다.
+ */
+fun ItemStack.unbreakable(): ItemStack {
+    val meta = itemMeta
+    meta.isUnbreakable = true
+    itemMeta = meta
+    return this
+}
+
+/**
+ * 아이템에 Unbreakable 을 제거합니다.
+ */
+fun ItemStack.breakable(): ItemStack {
+    val meta = itemMeta
+    meta.isUnbreakable = true
+    itemMeta = meta
+    return this
+}
+
+/**
  * 아이템에 모든 아이템 플래그를 추가합니다.
  */
 fun ItemStack.flagAll(): ItemStack {
