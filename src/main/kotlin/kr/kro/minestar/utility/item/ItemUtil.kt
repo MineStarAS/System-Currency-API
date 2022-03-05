@@ -121,7 +121,7 @@ fun ItemStack.unbreakable(): ItemStack {
  */
 fun ItemStack.breakable(): ItemStack {
     val meta = itemMeta
-    meta.isUnbreakable = true
+    meta.isUnbreakable = false
     itemMeta = meta
     return this
 }
