@@ -6,10 +6,9 @@ plugins {
 }
 
 group = "kr.kro.minestar"
-version = "1.6.3"
+version = "1.0.0"
 
 val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
-//val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\MCserver 1.17.1 - vanilla\\plugins")
 
 
 repositories {
@@ -23,13 +22,17 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib"))
-    compileOnly("net.kyori:adventure-api:4.9.3")
-    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
+    compileOnly("net.kyori:adventure-api:4.10.1")
+    compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
 
     //project_TL
 
     //MineStar
 //    compileOnly("kr.kro.minestar:NMS:1.0.0")
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
 tasks {
