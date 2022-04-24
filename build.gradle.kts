@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "kr.kro.minestar"
-version = "1.0.2"
+version = "1.0.5"
 
 val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
 
@@ -25,12 +25,11 @@ dependencies {
     compileOnly("net.kyori:adventure-api:4.10.1")
     compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
 
-    implementation("com.arcaniax:HeadDatabase-API:1.3.1")
+    compileOnly("com.arcaniax:HeadDatabase-API:1.3.1")
 
     //project_TL
 
     //MineStar
-//    compileOnly("kr.kro.minestar:NMS:1.0.0")
 }
 
 java {
