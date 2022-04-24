@@ -67,7 +67,7 @@ interface Argument {
      *
      * 예시 코드 :
      *
-     *      if (arg?.validLastIndex(args) == false)
+     *      if (arg?.isValid(args) == false)
      *          return "$prefix §c${arg.howToUse(label)}".toPlayer(player).setFalse()
      */
     fun isValid(args: Array<out String>) = validLastIndex().contains(args.lastIndex)
