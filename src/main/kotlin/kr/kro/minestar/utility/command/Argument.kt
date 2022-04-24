@@ -70,7 +70,7 @@ interface Argument {
      *      if (arg?.isValid(args) == false)
      *          return "$prefix §c${arg.howToUse(label)}".toPlayer(player).setFalse()
      */
-    fun isValid(args: Array<out String>) = validLastIndex().contains(args.lastIndex)
+    fun isValid(args: Array<out String>) = validLastIndex().contains(args.size)
 
 
     /**
