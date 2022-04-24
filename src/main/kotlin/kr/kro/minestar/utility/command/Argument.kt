@@ -45,7 +45,7 @@ interface Argument {
         val split = howToUse.split(' ')
         if (split.isEmpty()) hashSet.toSet()
 
-        var index = split.lastIndex
+        var index = split.size
         hashSet.add(index)
         for (string in split.reversed()) {
             if (string.contains('{') && string.contains('}')) {
@@ -70,7 +70,7 @@ interface Argument {
      *      if (arg?.isValid(args) == false)
      *          return "$prefix §c${arg.howToUse(label)}".toPlayer(player).setFalse()
      */
-    fun isValid(args: Array<out String>) = validLastIndex().contains(args.size)
+    fun isValid(args: Array<out String>) = validLastIndex().contains(args.lastIndex)
 
 
     /**
