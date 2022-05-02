@@ -1,6 +1,7 @@
 package kr.kro.minestar.utility.inventory
 
 import kr.kro.minestar.utility.item.isSameItem
+import org.bukkit.Bukkit
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.PlayerInventory
@@ -70,4 +71,15 @@ fun Inventory.howManyHasSameItem(item: ItemStack): Int {
         if (i.isSameItem(item)) has += i.amount
     }
     return has
+}
+
+object InventoryUtil {
+    /**
+     * 인벤토리를 생성합니다.
+     */
+    fun gui(line: Int, title: String): Inventory {
+        if (line <= 0) return Bukkit.createInventory(null, 9, title)
+        if (line > 6) return Bukkit.createInventory(null, 9 * 6, title)
+        return Bukkit.createInventory(null, 9 * line, title)
+    }
 }
