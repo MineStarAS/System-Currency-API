@@ -29,14 +29,17 @@ abstract class GUI(protected val player: Player) : Listener {
         return null
     }
 
-    protected fun displaying() {
+    protected fun baseDisplaying() {
         gui.clear()
         for (slot in slots().values) gui.setItem(slot.get, slot.item)
+        displaying()
     }
+
+    protected abstract fun displaying()
 
     fun openGUI() {
         enable(pl)
-        displaying()
+        baseDisplaying()
         player.openInventory(gui)
     }
 
