@@ -42,6 +42,10 @@ interface Argument {
      */
     fun validLastIndex(): Set<Int> {
         val hashSet = hashSetOf<Int>()
+        if (howToUse == "") {
+            hashSet.add(0)
+            return hashSet.toSet()
+        }
         val split = howToUse.split(' ')
         if (split.isEmpty()) hashSet.toSet()
 
