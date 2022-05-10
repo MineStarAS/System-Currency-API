@@ -11,8 +11,8 @@ interface FunctionalCommand : TabExecutor {
      * 플레이어에게 커맨드 사용법 리스트를 출력합니다.
      */
     fun printHowToUse(arguments: Array<out Argument>, player: Player, label: String, prefix: String): Boolean {
-        "$prefix §e$label Command List".toPlayer(player)
-        for (argument in arguments) "◇ ${argument.howToUse(label)}".toPlayer(player)
+        "$prefix §6$label Command List".toPlayer(player)
+        for (argument in arguments) "§e◇ ${argument.howToUse(label)}".toPlayer(player)
         return false
     }
 
