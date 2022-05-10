@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitTask
  */
 class Scheduler(val pl: JavaPlugin) {
     private val runTasks = mutableListOf<RunTask>()
+    private val bukkitTasks = mutableListOf<BukkitTask>()
     private val repeats = hashMapOf<String, BukkitTask>()
     private val fields = hashMapOf<String, Any?>()
 
@@ -18,13 +19,23 @@ class Scheduler(val pl: JavaPlugin) {
      * RunTask List 를 실행합니다.
      */
     fun play() {
-        if (runTasks.isEmpty()) return
+        stop()
         var time = 0L
         for (runTask in runTasks) {
             time += runTask.delay
             if (runTask is RunRepeat) repeats[runTask.key] = runTask.run(pl, time)
-            else runTask.run(pl, time)
+            else bukkitTasks.add(runTask.run(pl, time))
         }
+    }
+
+    /**
+     * RunTask List 를 멈춥니다.
+     */
+    fun stop() {
+        for (bukkitTask in bukkitTasks) bukkitTask.cancel()
+        for (repeat in repeats.values) repeat.cancel()
+        bukkitTasks.clear()
+        repeats.clear()
     }
 
     /**
