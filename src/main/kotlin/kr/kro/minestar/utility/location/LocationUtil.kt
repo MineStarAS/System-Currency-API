@@ -77,9 +77,9 @@ fun Location.turnBack(): Location {
  * Location의 블럭 중심좌표로 변환합니다.
  */
 fun Location.toCenter(): Location {
-    x = x.toInt().toDouble() + 0.5
-    y = y.toInt().toDouble() + 0.5
-    z = z.toInt().toDouble() + 0.5
+    x = blockX + 0.5
+    y = blockY + 0.5
+    z = blockZ + 0.5
     return this
 }
 
@@ -87,9 +87,9 @@ fun Location.toCenter(): Location {
  * Location의 블럭 바닥중심좌표로 변환합니다.
  */
 fun Location.toFloorCenter(): Location {
-    x = x.toInt().toDouble() + 0.5
-    y = y.toInt().toDouble()
-    z = z.toInt().toDouble() + 0.5
+    x = blockX + 0.5
+    y = blockY.toDouble()
+    z = blockZ + 0.5
     return this
 }
 
