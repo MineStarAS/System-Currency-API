@@ -16,14 +16,17 @@ class PlaySound {
 
     fun play(location: Location) = location.world.playSound(location, sound, soundCategory, volume, pitch)
 
+    fun play(player: Player, location: Location) = player.playSound(location, sound, soundCategory, volume, pitch)
+
     fun play(player: Player) = player.playSound(player.location, sound, soundCategory, volume, pitch)
 
     fun play(players: Collection<Player>) {
         for (player in players) player.playSound(player.location, sound, soundCategory, volume, pitch)
     }
 
-    fun setScale(scale: Scale) {
+    fun setScale(scale: Scale) : PlaySound{
         pitch = scale.float
+        return this
     }
 
     fun clone(): PlaySound {
