@@ -1,6 +1,9 @@
 package kr.kro.minestar.utility.command
 
 import kr.kro.minestar.utility.string.toPlayer
+import kr.kro.minestar.utility.unit.setFalse
+import org.bukkit.command.Command
+import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 import org.bukkit.entity.Player
 
@@ -24,4 +27,12 @@ interface FunctionalCommand : TabExecutor {
         for (argument in arguments) if (argument.name == args.first()) return argument
         return null
     }
+
+    /**
+     * onCommand 가 자동으로 false 를 return 할 수 있게하는 코드 입니다.
+     */
+
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>) = commanding(sender,command,label,args).setFalse()
+
+    fun commanding (player: CommandSender, cmd: Command, label: String, args: Array<out String>)
 }
