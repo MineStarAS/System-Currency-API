@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "kr.kro.minestar"
-version = "1.0.0"
+version = "1.0.1"
 
 val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
 
@@ -64,6 +64,7 @@ tasks {
         archiveBaseName.set(project.name)
         archiveClassifier.set("")
         archiveVersion.set(project.version.toString())
+        archivePath.delete()
         doLast {
             // jar file copy
             copy {
