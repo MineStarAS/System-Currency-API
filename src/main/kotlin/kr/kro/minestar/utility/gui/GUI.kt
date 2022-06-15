@@ -53,7 +53,7 @@ abstract class GUI(protected val player: Player) : Listener {
     }
 
     @EventHandler
-    protected fun closeGUI(e: InventoryCloseEvent) {
+    protected open fun closeGUI(e: InventoryCloseEvent) {
         if (e.player != player) return
         if (e.inventory != gui) return
         disable()

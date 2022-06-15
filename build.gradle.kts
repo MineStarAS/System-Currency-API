@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib"))
-    compileOnly("net.kyori:adventure-api:4.10.1")
+    compileOnly("net.kyori:adventure-api:4.11.0")
     compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
 
     compileOnly("com.arcaniax:HeadDatabase-API:1.3.1")
