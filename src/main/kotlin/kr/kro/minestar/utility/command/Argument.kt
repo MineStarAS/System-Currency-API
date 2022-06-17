@@ -36,6 +36,10 @@ interface Argument {
      *      중괄호 {Value} : '생략 가능한 입력 값', 마지막에 들어가는 게 적합하다
      */
     val howToUse: String
+    /**
+     * 해당 펄미션을 가지고 있는 유저만 사용할 수 있게 합니다.
+     */
+    val permission: ArgumentPermission
 
     /**
      * Argument 유효한 lastIndex 값 Set< Int > 를 구합니다.

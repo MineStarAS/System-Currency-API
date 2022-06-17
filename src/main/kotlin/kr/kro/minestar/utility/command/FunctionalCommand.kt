@@ -28,11 +28,17 @@ interface FunctionalCommand : TabExecutor {
         return null
     }
 
+    fun argument(arguments: Collection<Argument>, args: Array<out String>): Argument? {
+        if (args.isEmpty()) return null
+        for (argument in arguments) if (argument.name == args.first()) return argument
+        return null
+    }
+
     /**
      * onCommand 가 자동으로 false 를 return 할 수 있게하는 코드 입니다.
      */
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>) = commanding(sender,command,label,args).setFalse()
 
-    fun commanding (player: CommandSender, cmd: Command, label: String, args: Array<out String>)
+    fun commanding (sender: CommandSender, cmd: Command, label: String, args: Array<out String>)
 }
