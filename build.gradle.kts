@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "kr.kro.minestar"
-version = "1.0.3"
+version = "1.0.4"
 
 val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
 
