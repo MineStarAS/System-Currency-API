@@ -5,7 +5,9 @@ import kr.kro.minestar.utility.material.item
 import me.arcaniax.hdb.api.HeadDatabaseAPI
 import org.bukkit.Material
 import org.bukkit.configuration.file.YamlConfiguration
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.plugin.java.JavaPlugin
 
 class Head(plugin: JavaPlugin) {
@@ -17,6 +19,16 @@ class Head(plugin: JavaPlugin) {
     fun item(id: Int) = headDataBaseItem(id) ?: nullItem
 
     fun item(id: Int, material: Material) = headDataBaseItem(id) ?: material.item()
+
+    fun item(player: Player): ItemStack {
+        val item = Material.PLAYER_HEAD.item()
+
+        val meta = item.itemMeta as SkullMeta
+        meta.owningPlayer = player
+        item.itemMeta = meta
+
+        return item
+    }
 
     private fun headDataBaseItem(id: Int): ItemStack? {
         try {
