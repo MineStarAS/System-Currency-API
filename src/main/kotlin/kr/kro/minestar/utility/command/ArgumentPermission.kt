@@ -5,28 +5,21 @@ import org.bukkit.entity.Player
 class ArgumentPermission {
     private val permissionSet : Set<String>
 
-    private val opOnly : Boolean
+    constructor() {
+        permissionSet = setOf()
+    }
 
     constructor(permission : String) {
         permissionSet = setOf(permission)
-        opOnly = false
     }
 
     constructor(set : Set<String>) {
         permissionSet = set
-        opOnly = false
-    }
-
-    constructor(opOnly : Boolean) {
-        this.opOnly = opOnly
-        permissionSet = setOf()
     }
 
     fun hasPermission(player: Player): Boolean {
-        if (opOnly) {
-            if (player.isOp) return true
-            return false
-        }
+        if (player.isOp) return true
+        if (permissionSet.isEmpty()) return true
 
         for (permission in permissionSet) if (player.hasPermission(permission)) return true
 
