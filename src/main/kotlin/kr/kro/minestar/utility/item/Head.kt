@@ -9,16 +9,16 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
 
 class Head(plugin: JavaPlugin) {
-    val headFile = plugin.dataFolder.child("headItem.yml")
-    fun yaml() = YamlConfiguration.loadConfiguration(headFile)
+    private val headFile = plugin.dataFolder.child("headItem.yml")
+    private fun yaml() = YamlConfiguration.loadConfiguration(headFile)
 
-    val nullItem = Material.BARRIER.item().display("§c해당 ID의 머리가 없습니다")
+    private val nullItem = Material.BARRIER.item().display("§c해당 ID의 머리가 없습니다")
 
     fun item(id: Int) = headDataBaseItem(id) ?: nullItem
 
     fun item(id: Int, material: Material) = headDataBaseItem(id) ?: material.item()
 
-    fun headDataBaseItem(id: Int): ItemStack? {
+    private fun headDataBaseItem(id: Int): ItemStack? {
         try {
             val item = HeadDatabaseAPI().getItemHead("$id") ?: return null
             item.clearDisplay()
