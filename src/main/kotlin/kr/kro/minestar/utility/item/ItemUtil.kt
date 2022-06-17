@@ -28,7 +28,7 @@ fun ItemStack.display(display: String): ItemStack {
  */
 fun ItemStack.clearDisplay(): ItemStack {
     val meta = this.itemMeta
-    meta.setDisplayName("")
+    meta.setDisplayName(null)
     itemMeta = meta
     return this
 }
