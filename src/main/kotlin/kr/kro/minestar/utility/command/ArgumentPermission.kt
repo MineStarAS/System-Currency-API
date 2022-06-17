@@ -1,6 +1,7 @@
 package kr.kro.minestar.utility.command
 
 import org.bukkit.entity.Player
+import org.bukkit.plugin.java.JavaPlugin
 
 class ArgumentPermission {
     private val permissionSet : Set<String>
@@ -11,6 +12,10 @@ class ArgumentPermission {
 
     constructor(permission : String) {
         permissionSet = setOf(permission)
+    }
+
+    constructor(plugin: JavaPlugin, simplePermission : String) {
+        permissionSet = setOf("${plugin.javaClass.packageName}.$simplePermission")
     }
 
     constructor(set : Set<String>) {
