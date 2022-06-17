@@ -13,8 +13,6 @@ import org.bukkit.inventory.ItemStack
  *    T2(0, 1, Material.STONE.item()),
  *    T3(0, 2, Material.STONE.item()),
  *    ;
- *
- *    override fun enumValues() = values()
  *    }
  *
  *
@@ -29,15 +27,4 @@ interface Slot {
     val number: Int
 
     fun getIndex() = line * 9 + number
-
-    fun enumValues(): Array<out Slot>
-
-    fun setItems(inventory: Inventory) {
-        for (slot in enumValues()) inventory.setItem(getIndex(), slot.item)
-    }
-
-    fun getSlot(item: ItemStack): Slot? {
-        for (slot in enumValues()) if (slot.item.isSameItem(item)) return slot
-        return null
-    }
 }
