@@ -24,6 +24,7 @@ class Head(plugin: JavaPlugin) {
             item.clearDisplay()
             val yaml = yaml()
             yaml["$id"] = item
+            yaml.save(headFile)
             return item
         } catch (_: Exception) {
             return yaml().getItemStack("$id")
