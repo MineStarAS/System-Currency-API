@@ -45,8 +45,10 @@ abstract class GUI : Listener {
     /**
      * [Slot] 기능
      */
+    protected fun setItem(slot: Slot) = gui.setItem(slot.getIndex(), slot.item)
+
     protected fun setItems(slots: Array<out Slot>) {
-        for (slot in slots) gui.setItem(slot.getIndex(), slot.item)
+        for (slot in slots) setItem(slot)
     }
 
     protected fun getSlot(item: ItemStack, slots: Array<out Slot>): Slot? {
