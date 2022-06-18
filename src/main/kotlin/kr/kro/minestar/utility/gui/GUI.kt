@@ -13,7 +13,8 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
 
-abstract class GUI(protected val player: Player) : Listener {
+abstract class GUI : Listener {
+    abstract val player: Player
     protected abstract val pl: JavaPlugin
     protected abstract val gui: Inventory
 
@@ -44,11 +45,11 @@ abstract class GUI(protected val player: Player) : Listener {
     /**
      * [Slot] 기능
      */
-    protected fun setItems(inventory: Inventory, slots : Array<out Slot>) {
-        for (slot in slots) inventory.setItem(slot.getIndex(), slot.item)
+    protected fun setItems(slots: Array<out Slot>) {
+        for (slot in slots) gui.setItem(slot.getIndex(), slot.item)
     }
 
-    protected fun getSlot(item: ItemStack, slots : Array<out Slot>): Slot? {
+    protected fun getSlot(item: ItemStack, slots: Array<out Slot>): Slot? {
         for (slot in slots) if (slot.item.isSameItem(item)) return slot
         return null
     }
