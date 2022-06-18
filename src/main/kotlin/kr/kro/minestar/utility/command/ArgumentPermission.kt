@@ -14,12 +14,16 @@ class ArgumentPermission {
         permissionSet = setOf(permission)
     }
 
-    constructor(plugin: JavaPlugin, simplePermission : String) {
-        permissionSet = setOf("${plugin.javaClass.packageName}.$simplePermission")
-    }
-
     constructor(set : Set<String>) {
         permissionSet = set
+    }
+
+    constructor(plugin: JavaPlugin) {
+        permissionSet = setOf(plugin.javaClass.packageName)
+    }
+
+    constructor(plugin: JavaPlugin, simplePermission : String) {
+        permissionSet = setOf("${plugin.javaClass.packageName}.$simplePermission")
     }
 
     fun hasPermission(player: Player): Boolean {
