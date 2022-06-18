@@ -16,7 +16,13 @@ class Head(plugin: JavaPlugin) {
 
     private val nullItem = Material.BARRIER.item().display("§c해당 ID의 머리가 없습니다")
 
-    fun item(id: Int) = headDataBaseItem(id) ?: nullItem
+    fun item(id: Int) :ItemStack {
+        return try {
+            headDataBaseItem(id) ?: nullItem
+        } catch (_:Exception) {
+            yaml().getItemStack("$id")?: nullItem
+        }
+    }
 
     fun item(id: Int, material: Material) = headDataBaseItem(id) ?: material.item()
 
@@ -31,15 +37,16 @@ class Head(plugin: JavaPlugin) {
     }
 
     private fun headDataBaseItem(id: Int): ItemStack? {
-        try {
-            val item = HeadDatabaseAPI().getItemHead("$id") ?: return null
+        val clazz = Class.forName("me.arcaniax.hdb.api.HeadDatabaseAPI")
+        if (clazz != null) {
+            val item = HeadDatabaseAPI().getItemHead("$id") ?: return yaml().getItemStack("$id")
             item.clearDisplay()
             val yaml = yaml()
             yaml["$id"] = item
             yaml.save(headFile)
             return item
-        } catch (_: Exception) {
-            return yaml().getItemStack("$id")
         }
+
+        return yaml().getItemStack("$id")
     }
 }
