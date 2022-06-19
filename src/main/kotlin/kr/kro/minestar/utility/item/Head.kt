@@ -37,7 +37,11 @@ class Head(plugin: JavaPlugin) {
     }
 
     private fun headDataBaseItem(id: Int): ItemStack? {
-        val clazz = Class.forName("me.arcaniax.hdb.api.HeadDatabaseAPI")
+        val clazz = try {
+            Class.forName("me.arcaniax.hdb.api.HeadDatabaseAPI")
+        } catch (_:Exception) {
+            null
+        }
         if (clazz != null) {
             val item = HeadDatabaseAPI().getItemHead("$id") ?: return yaml().getItemStack("$id")
             item.clearDisplay()
