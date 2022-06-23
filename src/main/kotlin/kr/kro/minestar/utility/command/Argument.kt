@@ -1,6 +1,7 @@
 package kr.kro.minestar.utility.command
 
 import kr.kro.minestar.utility.string.remove
+import org.apache.commons.lang.mutable.Mutable
 
 /**
  * CommandExecutor 를 상속받은 클래스에서 사용되는 enum class 에 상속되어 사용됩니다.
@@ -74,33 +75,6 @@ interface Argument {
      * 에러를 방지 합니다.
      */
     fun isValid(args: Array<out String>) = validLastIndex().contains(args.lastIndex)
-
-
-    /**
-     * onTabComplete 에서 when(arg) 조건문에서 임의의 값을 입력해야 할 때
-     *
-     * 입력 값 타입이 무엇인지 표시해 줍니다.
-     *
-     * 예시 코드 :
-     *
-     *      when (arg) {
-     *          Arg.create -> when (args.lastIndex) {
-     *              1 -> if (args.last() == "") list.add(arg.argElement(args))
-     *              2 -> if (args.last() == "") list.add(arg.argElement(args))
-     *              3 -> if (args.last() == "") list.add(arg.argElement(args))
-     *          }
-     *          Arg.remove -> when (args.lastIndex) {
-     *              1 -> for (s in list) if (s.contains(args.last())) list.add(s)
-     *          }
-     *          null -> return list
-     *      }
-     */
-    fun argElement(args: Array<out String>): String {
-        if (args.isEmpty()) return ""
-        val split = howToUse.split(' ')
-        if (args.lastIndex == 0) return name
-        return split[args.lastIndex - 1]
-    }
 
     /**
      * howToUse 값에서 '대괄호'로 이루어진 입력 값을 List< String > 형태로 변환해 줍니다.

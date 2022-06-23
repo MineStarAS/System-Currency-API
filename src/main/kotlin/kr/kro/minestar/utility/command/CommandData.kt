@@ -42,13 +42,25 @@ class CommandData(
      * 플레이어에게 커맨드 사용법 리스트를 출력합니다.
      */
     fun printHowToUse() {
-        val prefix = plugin.prefix
-
-        "§6$label Command List".script(prefix).toSender()
-        " ".toSender()
+        "§eCommand List".script("§6$label").toSender()
         for (argument in arguments) {
             if (!argument.permission.hasPermission(sender, functionalCommand)) continue
-            "§e- ${argument.howToUse(label)}".toSender()
+
+            val split = argument.howToUse(label).split(' ')
+
+            val colors = listOf(
+                StringColor.LIME,
+                StringColor.AQUA,
+                StringColor.RED,
+                StringColor.MAGENTA,
+                StringColor.YELLOW,
+            )
+
+            var string = " "
+
+            for ((index, s) in split.withIndex()) string += " ${colors[index % colors.size]}$s"
+
+            string.toSender()
         }
     }
 
@@ -56,13 +68,12 @@ class CommandData(
      * args 유효 및 Permission 유무를 확인합니다.
      */
     private fun isValid(): Boolean {
-        if (argument?.isValid(args) == true) {
+        if (argument == null) return true
+        if (argument.isValid(args)) {
             if (argument.permission.hasPermission(sender, functionalCommand)) return true
             "You do not have permission.".script(plugin.prefix, StringColor.RED).toSender()
             return false
-        }
-        if (argument != null) "${plugin.prefix} §c${argument.howToUse(label)}".toSender()
-        else printHowToUse()
+        } else argument.howToUse(label).script(plugin.prefix, StringColor.RED).toSender()
         return false
     }
 }

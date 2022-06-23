@@ -8,6 +8,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 import org.bukkit.entity.Player
+import org.bukkit.permissions.Permissible
 import java.io.File
 
 interface FunctionalCommand : TabExecutor {
@@ -34,7 +35,9 @@ interface FunctionalCommand : TabExecutor {
     fun String.warningScript(player: Player) = script(plugin.prefix, StringColor.RED).toPlayer(player)
     fun String.warningScript(sender: CommandSender) = script(plugin.prefix, StringColor.RED).toSender(sender)
 
-
+    /**
+     * [onCommand] override 기능
+     */
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         commanding(CommandData(sender, command, label, args, this), args)
         return false
@@ -43,24 +46,54 @@ interface FunctionalCommand : TabExecutor {
     fun commanding(data: CommandData, args: Array<out String>)
 
     /**
-     * [onTabComplete] 에 사용되는 기능들 입니다.
+     * [onTabComplete] override 기능
+     */
+    override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): MutableList<String>? {
+        return tabComplete(TabCompleteData(sender, args, this), args)
+    }
+
+    fun tabComplete(data: TabCompleteData, args: Array<out String>): MutableList<String>
+
+    /**
+     * [onTabComplete] 에서 반환될 [List]에 추가하는 기능들 입니다.
      */
     fun Collection<*>.add(list: MutableList<String>, last: String) {
         if (isEmpty()) return
-        when (first()!!::class) {
-            String::class -> for (element in this as Collection<String>) if (element.lowercase().contains(last)) list.add(element)
-            Player::class -> for (element in this as Collection<Player>) if (element.name.lowercase().contains(last)) list.add(element.name)
-            File::class -> for (element in this as Collection<File>) if (element.name.lowercase().contains(last)) list.add(element.name)
+        when (first()) {
+            null -> return
+            is String -> for (element in this as Collection<String>) if (element.lowercase().contains(last)) list.add(element)
+            is Player -> for (element in this as Collection<Player>) if (element.name.lowercase().contains(last)) list.add(element.name)
+            is File -> for (element in this as Collection<File>) if (element.name.lowercase().contains(last)) list.add(element.name)
 
             else -> for (element in this) if (element.toString().lowercase().contains(last)) list.add(element.toString())
         }
     }
 
-    fun Array<out Argument>.add(list: MutableList<String>, last: String) {
-        for (s in this) if (s.name.lowercase().contains(last)) list.add(s.name)
+    fun Array<*>.add(list: MutableList<String>, last: String) {
+        if (isEmpty()) return
+        when (first()) {
+            null -> return
+            is String -> for (element in this as Array<String>) if (element.lowercase().contains(last)) list.add(element)
+            is Player -> for (element in this as Array<Player>) if (element.name.lowercase().contains(last)) list.add(element.name)
+            is File -> for (element in this as Array<File>) if (element.name.lowercase().contains(last)) list.add(element.name)
+
+            is Argument -> for (element in this as Array<out Argument>) if (element.name.lowercase().contains(last)) list.add(element.name)
+            is Enum<*> -> for (element in this as Array<out Enum<*>>) if (element.name.lowercase().contains(last)) list.add(element.name)
+
+            else -> for (element in this) if (element.toString().lowercase().contains(last)) list.add(element.toString())
+        }
     }
 
-    fun Array<out Enum<*>>.add(list: MutableList<String>, last: String) {
-        for (s in this) if (s.name.lowercase().contains(last)) list.add(s.name)
+    fun Array<out Argument>.add(permissible: Permissible, list: MutableList<String>, last: String, functionalCommand: FunctionalCommand) {
+        for (element in this)
+            if (element.permission.hasPermission(permissible, functionalCommand))
+                if (element.name.lowercase().contains(last)) list.add(element.name)
+    }
+
+    fun Argument.add(list: MutableList<String>, last: String, lastIndex: Int) {
+        if (last != "") return
+        val split = howToUse.split(' ')
+        val arg = split[lastIndex - 1]
+        list.add(arg)
     }
 }
