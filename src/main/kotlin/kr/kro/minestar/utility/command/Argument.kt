@@ -72,11 +72,6 @@ interface Argument {
     /**
      * onCommand 메소드에서 when 문법에 진입하기 전에 '예시 코드' 와 같은 코드를 넣어
      * 에러를 방지 합니다.
-     *
-     * 예시 코드 :
-     *
-     *      if (arg?.isValid(args) == false)
-     *          return "$prefix §c${arg.howToUse(label)}".toPlayer(player).setFalse()
      */
     fun isValid(args: Array<out String>) = validLastIndex().contains(args.lastIndex)
 
