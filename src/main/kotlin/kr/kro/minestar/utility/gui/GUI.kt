@@ -15,13 +15,13 @@ import org.bukkit.plugin.java.JavaPlugin
 
 abstract class GUI : Listener {
     abstract val player: Player
-    protected abstract val pl: JavaPlugin
+    protected abstract val plugin: JavaPlugin
     protected abstract val gui: Inventory
 
     protected open fun displaying() {}
 
     fun openGUI() {
-        enable(pl)
+        enable(plugin)
         displaying()
         player.openInventory(gui)
     }
