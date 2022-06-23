@@ -4,7 +4,7 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 
 class ArgumentPermission {
-    private val permissionSet : Set<String>
+    val permissionSet : Set<String>
 
     constructor() {
         permissionSet = setOf()
@@ -33,5 +33,13 @@ class ArgumentPermission {
         for (permission in permissionSet) if (player.hasPermission(permission)) return true
 
         return false
+    }
+
+    fun setPermission(player: Player, plugin : JavaPlugin, boolean: Boolean) {
+        for (permission in permissionSet) player.addAttachment(plugin, permission, boolean)
+    }
+
+    fun removePermission(player: Player, plugin : JavaPlugin, boolean: Boolean) {
+//        for (permission in permissionSet) player.removeAttachment()
     }
 }
