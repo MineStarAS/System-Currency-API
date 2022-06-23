@@ -47,8 +47,12 @@ class ArgumentPermission {
     }
 
     fun hasPermission(permissible: Permissible, functionalCommand: FunctionalCommand): Boolean {
+        return hasPermission(permissible, functionalCommand.isSimplePermission())
+    }
+
+    fun hasPermission(permissible: Permissible, isSimplePermission: Boolean): Boolean {
         if (permissible.isOp) return true
-        if (functionalCommand.isSimplePermission()) {
+        if (isSimplePermission) {
             if (!onlyOp) return true
             return false
         }
