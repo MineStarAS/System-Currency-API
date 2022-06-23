@@ -95,3 +95,14 @@ fun String.convertFileName(): String {
 fun String.unColor(): String {
     return ChatColor.stripColor(this)!!
 }
+
+/**
+ * 스크립트 기능.
+ */
+fun String.script(prefix : String) = "[$prefix] $this"
+
+fun String.script(bracketColor: StringColor, prefix : String) = "$bracketColor[${StringColor.WHITE}$prefix$bracketColor] $this"
+
+fun String.script(prefix : String, scriptColor: StringColor) = "[$prefix] $scriptColor$this"
+
+fun String.script(bracketColor: StringColor, prefix : String, scriptColor: StringColor) = "$bracketColor[${StringColor.WHITE}$prefix$bracketColor] $scriptColor$this"
