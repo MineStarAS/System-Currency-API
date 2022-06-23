@@ -99,10 +99,10 @@ fun String.unColor(): String {
 /**
  * 스크립트 기능.
  */
-fun String.script(prefix : String) = "[$prefix] $this"
+fun String.script(prefix : String) = "${StringColor.WHITE}[$prefix${StringColor.WHITE}] $this"
 
 fun String.script(bracketColor: StringColor, prefix : String) = "$bracketColor[${StringColor.WHITE}$prefix$bracketColor] $this"
 
-fun String.script(prefix : String, scriptColor: StringColor) = "[$prefix] $scriptColor$this"
+fun String.script(prefix : String, scriptColor: StringColor) = "${StringColor.WHITE}[$prefix${StringColor.WHITE}] $scriptColor$this"
 
 fun String.script(bracketColor: StringColor, prefix : String, scriptColor: StringColor) = "$bracketColor[${StringColor.WHITE}$prefix$bracketColor] $scriptColor$this"
