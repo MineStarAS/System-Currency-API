@@ -30,6 +30,12 @@ interface FunctionalCommand : TabExecutor {
     fun String.toSender(sender: CommandSender) = sender.sendMessage(this)
 
     /**
+     * 코드 실행이 끝났을 때 아래코드로 플레이어에게 알립니다.
+     */
+    fun String.finishScript(player: Player) = script(plugin.prefix).toPlayer(player)
+    fun String.finishScript(sender: CommandSender) = script(plugin.prefix).toSender(sender)
+
+    /**
      * 코드 실행 중에 올바르지 않는 경우가 생길 경우 아래 코드로 플레이어에게 알립니다.
      */
     fun String.warningScript(player: Player) = script(plugin.prefix, StringColor.RED).toPlayer(player)

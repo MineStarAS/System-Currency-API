@@ -97,6 +97,15 @@ fun ItemStack.amount(int: Int): ItemStack {
 }
 
 /**
+ * 아이템의 CustomModelData 를 가져옵니다.
+ */
+fun ItemStack.cmData(): Int? {
+    val meta = itemMeta
+    if (!meta.hasCustomModelData()) return null
+    return meta.customModelData
+}
+
+/**
  * 아이템의 CustomModelData 를 설정합니다.
  */
 fun ItemStack.cmData(int: Int?): ItemStack {
