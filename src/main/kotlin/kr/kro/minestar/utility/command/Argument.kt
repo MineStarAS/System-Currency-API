@@ -1,7 +1,6 @@
 package kr.kro.minestar.utility.command
 
 import kr.kro.minestar.utility.string.remove
-import org.apache.commons.lang.mutable.Mutable
 
 /**
  * CommandExecutor 를 상속받은 클래스에서 사용되는 enum class 에 상속되어 사용됩니다.
@@ -37,6 +36,7 @@ interface Argument {
      *      중괄호 {Value} : '생략 가능한 입력 값', 마지막에 들어가는 게 적합하다
      */
     val howToUse: String
+
     /**
      * 해당 펄미션을 가지고 있는 유저만 사용할 수 있게 합니다.
      */
@@ -77,7 +77,7 @@ interface Argument {
     fun isValid(args: Array<out String>) = validLastIndex().contains(args.lastIndex)
 
     /**
-     * howToUse 값에서 '대괄호'로 이루어진 입력 값을 List< String > 형태로 변환해 줍니다.
+     * howToUse 값에서 '대괄호' 또는 '중괄호'로 이루어진 입력 값 타입에 '/' 가 있으면 List< String > 형태로 변환해 줍니다.
      */
     fun argList(index: Int): List<String> {
         val list = mutableListOf<String>()
@@ -87,7 +87,8 @@ interface Argument {
         if (split.lastIndex < newIndex) return list.toList()
         val value = split[newIndex]
         val charList = value.toList()
-        if (charList.first() != '[' || charList.last() != ']') return list.toList()
-        return value.remove('[').remove(']').split('/')
+        if (charList.first() != '[' || charList.last() != ']')
+            if (charList.first() != '{' || charList.last() != '}') return list.toList()
+        return value.remove('[').remove(']').remove('{').remove('}').split('/')
     }
 }
