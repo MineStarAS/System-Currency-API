@@ -4,16 +4,6 @@ import kr.kro.minestar.utility.string.remove
 
 /**
  * CommandExecutor 를 상속받은 클래스에서 사용되는 enum class 에 상속되어 사용됩니다.
- *
- * onCommand 또는 onTabComplete 메소드에서
- *
- *      val arg = try {
- *          Arg.valueOf(args.first())
- *      } catch (_: Exception) {
- *          null
- *      }
- *
- *  위와 같은 코드로 변수 지정되어 사용되며 when 으로 arg 를 구분합니다.
  */
 interface Argument {
 
@@ -29,11 +19,13 @@ interface Argument {
      *
      * 괄호 사용법 :
      *
-     *      대괄호 [Value1/Value2] : '지정된 입력 값', 괄호 안에 있는 값만 입력 가능
+     *      대괄호 [Value1/Value2/...] : '지정된 입력 값', 괄호 안에 있는 값만 입력 가능
      *
      *      홑화살괄호 <Value> : '임의의 입력 값' 또는 '목록이 있는 입력값'
      *
      *      중괄호 {Value} : '생략 가능한 입력 값', 마지막에 들어가는 게 적합하다
+     *
+     *      중괄호 {Value1/Value2/...} : '생략 가능한 지정된 입력 값'
      */
     val howToUse: String
 
@@ -41,6 +33,11 @@ interface Argument {
      * 해당 펄미션을 가지고 있는 유저만 사용할 수 있게 합니다.
      */
     val permission: ArgumentPermission
+
+    /**
+     * [name] 외 [aliases]에 있는 값으로도 커맨드를 실행 할 수 있습니다.
+     */
+    val aliases : List<String>?
 
     /**
      * Argument 유효한 lastIndex 값 Set< Int > 를 구합니다.

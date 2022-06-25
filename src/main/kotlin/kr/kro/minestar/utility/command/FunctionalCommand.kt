@@ -91,9 +91,13 @@ interface FunctionalCommand : TabExecutor {
     }
 
     fun Array<out Argument>.add(permissible: Permissible, list: MutableList<String>, last: String, functionalCommand: FunctionalCommand) {
-        for (element in this)
-            if (element.permission.hasPermission(permissible, functionalCommand))
-                if (element.name.lowercase().contains(last)) list.add(element.name)
+        val argList = mutableListOf<String>()
+        for (argument in this) {
+            if (!argument.permission.hasPermission(permissible, functionalCommand)) continue
+            argList.add(argument.name)
+            for (alias in argument.aliases ?: continue) argList.add(alias)
+        }
+        for (arg in argList) if (arg.lowercase().contains(last)) list.add(arg)
     }
 
     fun Argument.add(list: MutableList<String>, last: String, lastIndex: Int) {

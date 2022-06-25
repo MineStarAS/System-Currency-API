@@ -34,7 +34,13 @@ class CommandData(
      */
     private fun argument(): Argument? {
         if (args.isEmpty()) return null
-        for (argument in arguments) if (argument.name == args.first()) return argument
+        val first = args.first()
+        for (argument in arguments) {
+            if (argument.name == first) return argument
+            if (argument.aliases != null)
+                for (alias in argument.aliases!!)
+                    if (alias == first) return argument
+        }
         return null
     }
 
