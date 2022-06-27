@@ -13,7 +13,6 @@ val plugins = File("C:\\Users\\MineStar\\Desktop\\MC Server folder\\libs")
 
 repositories {
     mavenCentral()
-    maven("https://papermc.io/repo/repository/maven-public/")
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/") {
         name = "sonatype-oss-snapshots"
     }
@@ -22,15 +21,6 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib"))
-    compileOnly("net.kyori:adventure-api:4.11.0")
-    compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
-
-    compileOnly("com.arcaniax:HeadDatabase-API:1.3.1")
-
-    //project_TL
-
-
-    //MineStar
 }
 
 java {

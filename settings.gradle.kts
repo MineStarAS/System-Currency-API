@@ -1,1 +1,1 @@
-rootProject.name = "Utility-API"
+rootProject.name = "Default-API-Project"
