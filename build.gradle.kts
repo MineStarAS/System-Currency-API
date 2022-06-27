@@ -22,8 +22,9 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib"))
+    compileOnly("net.kyori:adventure-api:4.11.0")
+    compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
 
-    compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
     compileOnly("com.github.MineStarAS:Utility-API:1.2.6")
     compileOnly(files("C:\\Users\\MineStar\\Desktop\\MC Server folder\\MCserver 1.18.1 - vanilla\\plugins\\MineStar-Currency-1.0.0.jar"))
 }
