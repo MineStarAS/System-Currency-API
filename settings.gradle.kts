@@ -1,1 +1,1 @@
-rootProject.name = "Default-API-Project"
+rootProject.name = "System-Currency-API"
